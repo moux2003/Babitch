@@ -5,16 +5,15 @@ namespace Cytron\Bundle\BabitchBundle\Entity;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 use FSC\HateoasBundle\Annotation as Hateoas;
-use JMS\Serializer\Annotation as Serializer;
 
 /**
- * Babitch Player Entity.
+ * Babitch Team Entity.
  *
- * @ORM\Entity(repositoryClass="Cytron\Bundle\BabitchBundle\Repository\PlayerRepository")
- * @ORM\Table(name="player")
- * @Hateoas\Relation("self", href = @Hateoas\Route("get_player", parameters = { "id" = ".id"}))
+ * @ORM\Entity()
+ * @ORM\Table(name="team")
+ * @Hateoas\Relation("self", href = @Hateoas\Route("get_team", parameters = { "id" = ".id"}))
  */
-class Player extends AbstractEntity
+class Team extends AbstractEntity
 {
     /**
      * @ORM\Id
@@ -34,20 +33,20 @@ class Player extends AbstractEntity
     protected $name;
 
     /**
-     * @ORM\Column(name="email", type="string")
+     * @ORM\OneToOne(targetEntity="Player")
      * @Assert\NotBlank()
      *
      * @var string
      */
-    protected $email;
+    protected $player1;
 
     /**
-     * @var GamePlayer[]
+     * @ORM\OneToOne(targetEntity="Player")
+     * @Assert\NotBlank()
      *
-     * @ORM\OneToMany(targetEntity="GamePlayer", mappedBy="player")
-     * @Serializer\Exclude()
+     * @var string
      */
-    protected $gamePlayers;
+    protected $player2;
 
     /**
      * @param int $id
@@ -70,18 +69,48 @@ class Player extends AbstractEntity
     }
 
     /**
-     * @param string $name
+     * @param string $player
      *
      * @return $this
      */
-    public function setName($name)
+    public function setPlayer1(Player $player)
     {
-        $this->name = $name;
+        $this->player1 = $player;
 
         return $this;
     }
 
     /**
+     * @return string
+     */
+    public function getPlayer1()
+    {
+        return $this->player1;
+    }
+
+    /**
+     * @param string $player
+     *
+     * @return $this
+     */
+    public function setPlayer2(Player $player)
+    {
+        $this->player2 = $player;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPlayer2()
+    {
+        return $this->player2;
+    }
+
+    /**
+     * Gets the value of name.
+     *
      * @return string
      */
     public function getName()
@@ -90,22 +119,16 @@ class Player extends AbstractEntity
     }
 
     /**
-     * @param string $email
+     * Sets the value of name.
      *
-     * @return $this
+     * @param string $name the name
+     *
+     * @return self
      */
-    public function setEmail($email)
+    public function setName($name)
     {
-        $this->email = $email;
+        $this->name = $name;
 
         return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getEmail()
-    {
-        return $this->email;
     }
 }
