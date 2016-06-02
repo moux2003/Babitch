@@ -17,7 +17,7 @@ class AppKernel extends Kernel
             new FOS\RestBundle\FOSRestBundle(),
             new FSC\HateoasBundle\FSCHateoasBundle(),
             new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
-            new Nelmio\CorsBundle\NelmioCorsBundle(), 
+            new Nelmio\CorsBundle\NelmioCorsBundle(),
             new Cytron\Bundle\BabitchBundle\CytronBabitchBundle(),
         );
 
@@ -33,5 +33,37 @@ class AppKernel extends Kernel
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
         $loader->load(__DIR__.'/config/config_'.$this->getEnvironment().'.yml');
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getCacheDir()
+    {
+        if ($this->isVagrantEnvironment()) {
+            return '/dev/shm/mobiapps/cache/babitch/'.$this->environment;
+        }
+
+        return parent::getCacheDir();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getLogDir()
+    {
+        if ($this->isVagrantEnvironment()) {
+            return '/dev/shm/mobiapps/logs/babitch/'.$this->environment;
+        }
+
+        return parent::getLogDir();
+    }
+
+    /**
+     * @return bool
+     */
+    protected function isVagrantEnvironment()
+    {
+        return is_dir('/home/vagrant') && is_dir('/dev/shm');
     }
 }
