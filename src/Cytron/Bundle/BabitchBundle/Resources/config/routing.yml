@@ -9,3 +9,7 @@ CytronBabitchBundle_Player:
 CytronBabitchBundle_Team:
     resource: "@CytronBabitchBundle/Controller/TeamController.php"
     type:     rest
+
+CytronBabitchBundle_Tournament:
+    resource: "@CytronBabitchBundle/Controller/TournamentController.php"
+    type:     rest

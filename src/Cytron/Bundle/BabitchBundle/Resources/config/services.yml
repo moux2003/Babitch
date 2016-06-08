@@ -11,6 +11,9 @@ parameters:
     cytron_babitch.team.manager.class: 'Cytron\Bundle\BabitchBundle\Manager\TeamManager'
     cytron_babitch.team.entity.name:   'CytronBabitchBundle:Team'
 
+    cytron_babitch.tournament.manager.class: 'Cytron\Bundle\BabitchBundle\Manager\TournamentManager'
+    cytron_babitch.tournament.entity.name:   'CytronBabitchBundle:Tournament'
+
 services:
     cytron_babitch.game.manager:
         class: %cytron_babitch.game.manager.class%
@@ -27,3 +30,7 @@ services:
     cytron_babitch.team.manager:
         class: %cytron_babitch.team.manager.class%
         arguments: [ @doctrine.orm.entity_manager, %cytron_babitch.team.entity.name% ]
+
+    cytron_babitch.tournament.manager:
+        class: %cytron_babitch.tournament.manager.class%
+        arguments: [ @doctrine.orm.entity_manager, %cytron_babitch.tournament.entity.name% ]
