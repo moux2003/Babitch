@@ -43,6 +43,7 @@ class GoalType extends AbstractType
             ))
             ->add('autogoal', 'checkbox')
             ->add('gamelle', 'checkbox')
+            ->add('demigoal', 'checkbox')
         ;
     }
 

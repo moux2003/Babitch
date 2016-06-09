@@ -81,6 +81,14 @@ class Goal extends AbstractEntity
     protected $gamelle;
 
     /**
+     * @ORM\Column(name="demigoal", type="boolean")
+     * @Assert\NotNull()
+     *
+     * @var bool
+     */
+    protected $demigoal;
+
+    /**
      * @ORM\Column(name="scored_at", type="datetime", nullable=true)
      * @Serializer\Type("DateTime<'Y-m-d H:i:s'>")
      */
@@ -289,6 +297,30 @@ class Goal extends AbstractEntity
     public function setGamelle($gamelle)
     {
         $this->gamelle = $gamelle;
+
+        return $this;
+    }
+
+    /**
+     * Gets the value of demigoal.
+     *
+     * @return bool
+     */
+    public function getDemigoal()
+    {
+        return $this->demigoal;
+    }
+
+    /**
+     * Sets the value of demigoal.
+     *
+     * @param bool $demigoal the demigoal
+     *
+     * @return self
+     */
+    public function setDemigoal($demigoal)
+    {
+        $this->demigoal = $demigoal;
 
         return $this;
     }
