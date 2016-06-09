@@ -9,7 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Cytron\Bundle\BabitchBundle\Entity\Goal;
 
 /**
- * GoalType Form class
+ * GoalType Form class.
  */
 class GoalType extends AbstractType
 {
@@ -23,25 +23,27 @@ class GoalType extends AbstractType
     {
         $builder
             ->add('position', 'choice', array(
-                'choices' => array(Goal::getAllowedPositions())
+                'choices' => array(Goal::getAllowedPositions()),
             ))
             ->add('player_id', 'entity', array(
-                'empty_value'   => 'Select player',
+                'empty_value' => 'Select player',
                 'property_path' => 'player',
-                'class'         => 'CytronBabitchBundle:Player',
-                'property'      => 'name',
+                'class' => 'CytronBabitchBundle:Player',
+                'property' => 'name',
             ))
             ->add('conceder_id', 'entity', array(
-                'empty_value'   => 'Select player',
+                'empty_value' => 'Select player',
                 'property_path' => 'conceder',
-                'class'         => 'CytronBabitchBundle:Player',
-                'property'      => 'name',
+                'class' => 'CytronBabitchBundle:Player',
+                'property' => 'name',
             ))
             ->add('scored_at', 'datetime', array(
                 'widget' => 'single_text',
                 'format' => DateTimeType::HTML5_FORMAT,
             ))
-            ->add('autogoal', 'checkbox');
+            ->add('autogoal', 'checkbox')
+            ->add('gamelle', 'checkbox')
+        ;
     }
 
     /**

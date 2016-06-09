@@ -4,18 +4,17 @@ namespace Cytron\Bundle\BabitchBundle\Entity;
 
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
-use FSC\HateoasBundle\Annotation as Hateoas;
 use JMS\Serializer\Annotation as Serializer;
 
 /**
- * Babitch Game Entity
+ * Babitch Game Entity.
  *
  * @ORM\Entity()
  * @ORM\Table(name="goal")
  */
 class Goal extends AbstractEntity
 {
-    const POSITION_ATTACK  = 'attack';
+    const POSITION_ATTACK = 'attack';
     const POSITION_DEFENSE = 'defense';
 
     /**
@@ -23,7 +22,7 @@ class Goal extends AbstractEntity
      * @ORM\GeneratedValue
      * @ORM\Column(name="id", type="integer")
      *
-     * @var integer
+     * @var int
      */
     protected $id;
 
@@ -69,9 +68,17 @@ class Goal extends AbstractEntity
      * @ORM\Column(name="autogoal", type="boolean")
      * @Assert\NotNull()
      *
-     * @var boolean
+     * @var bool
      */
     protected $autogoal;
+
+    /**
+     * @ORM\Column(name="gamelle", type="boolean")
+     * @Assert\NotNull()
+     *
+     * @var bool
+     */
+    protected $gamelle;
 
     /**
      * @ORM\Column(name="scored_at", type="datetime", nullable=true)
@@ -85,7 +92,7 @@ class Goal extends AbstractEntity
     public static function getAllowedPositions()
     {
         return array(
-            self::POSITION_ATTACK  => self::POSITION_ATTACK,
+            self::POSITION_ATTACK => self::POSITION_ATTACK,
             self::POSITION_DEFENSE => self::POSITION_DEFENSE,
         );
     }
@@ -155,7 +162,7 @@ class Goal extends AbstractEntity
      * @Serializer\SerializedName("player_id")
      * @Serializer\Type("integer")
      *
-     * @return integer
+     * @return int
      */
     public function getPlayerId()
     {
@@ -187,7 +194,7 @@ class Goal extends AbstractEntity
      * @Serializer\SerializedName("conceder_id")
      * @Serializer\Type("integer")
      *
-     * @return integer
+     * @return int
      */
     public function getConcederId()
     {
@@ -202,7 +209,7 @@ class Goal extends AbstractEntity
     public function setPosition($position)
     {
         if (!in_array($position, self::getAllowedPositions())) {
-            throw new \Exception($position . " position is not allowed");
+            throw new \Exception($position.' position is not allowed');
         }
 
         $this->position = $position;
@@ -219,7 +226,7 @@ class Goal extends AbstractEntity
     }
 
     /**
-     * @param boolean $autogoal
+     * @param bool $autogoal
      *
      * @return $this
      */
@@ -239,7 +246,7 @@ class Goal extends AbstractEntity
     }
 
     /**
-     * Set score date
+     * Set score date.
      *
      * @param \DateTime $date Score date
      *
@@ -253,12 +260,36 @@ class Goal extends AbstractEntity
     }
 
     /**
-     * Get score date
+     * Get score date.
      *
      * @return \DateTime
      */
     public function getScoredAt()
     {
         return $this->scoredAt;
+    }
+
+    /**
+     * Gets the value of gamelle.
+     *
+     * @return bool
+     */
+    public function getGamelle()
+    {
+        return $this->gamelle;
+    }
+
+    /**
+     * Sets the value of gamelle.
+     *
+     * @param bool $gamelle the gamelle
+     *
+     * @return self
+     */
+    public function setGamelle($gamelle)
+    {
+        $this->gamelle = $gamelle;
+
+        return $this;
     }
 }
