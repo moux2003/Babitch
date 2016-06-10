@@ -12,7 +12,10 @@ parameters:
     cytron_babitch.team.entity.name:   'CytronBabitchBundle:Team'
 
     cytron_babitch.tournament.manager.class: 'Cytron\Bundle\BabitchBundle\Manager\TournamentManager'
-    cytron_babitch.tournament.entity.name:   'CytronBabitchBundle:Tournament'
+    cytron_babitch.tournament.entity.name:   'CytronBabitchBundle:Tournament\Tournament'
+
+    cytron_babitch.tournament_group.manager.class: 'Cytron\Bundle\BabitchBundle\Manager\TournamentGroupManager'
+    cytron_babitch.tournament_group.entity.name:   'CytronBabitchBundle:Tournament\Group'
 
 services:
     cytron_babitch.game.manager:
@@ -34,3 +37,7 @@ services:
     cytron_babitch.tournament.manager:
         class: %cytron_babitch.tournament.manager.class%
         arguments: [ @doctrine.orm.entity_manager, %cytron_babitch.tournament.entity.name% ]
+
+    cytron_babitch.tournament_group.manager:
+        class: %cytron_babitch.tournament_group.manager.class%
+        arguments: [ @doctrine.orm.entity_manager, %cytron_babitch.tournament_group.entity.name% ]

@@ -1,0 +1,8 @@
+tournament:
+    type:     rest
+    resource: Cytron\Bundle\BabitchBundle\Controller\Tournament\TournamentController
+
+tournament_groups:
+    type:     rest
+    parent:   tournament
+    resource: Cytron\Bundle\BabitchBundle\Controller\Tournament\GroupController

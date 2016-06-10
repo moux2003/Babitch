@@ -11,7 +11,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 /**
  * GoalType Form class.
  */
-class TournamentType extends AbstractType
+class TournamentGroupType extends AbstractType
 {
     /**
      * Configures a Tournament form.
@@ -23,6 +23,9 @@ class TournamentType extends AbstractType
     {
         $builder
             ->add('name', TextType::class)
+            ->add('tournament', EntityType::class, array(
+                'class' => 'CytronBabitchBundle:Tournament\Tournament',
+            ))
             ->add('teams', EntityType::class, array(
                 'class' => 'CytronBabitchBundle:Team',
                 'multiple' => true,
@@ -38,7 +41,7 @@ class TournamentType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Cytron\Bundle\BabitchBundle\Entity\Tournament\Tournament',
+            'data_class' => 'Cytron\Bundle\BabitchBundle\Entity\Tournament\Group',
         ));
     }
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Cytron\Bundle\BabitchBundle\Controller;
+namespace Cytron\Bundle\BabitchBundle\Controller\Tournament;
 
 use Symfony\Component\HttpFoundation\Request;
 use FOS\RestBundle\Request\ParamFetcher;
@@ -10,6 +10,7 @@ use FOS\RestBundle\Controller\Annotations\Route;
 use FOS\RestBundle\Controller\FOSRestController;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Cytron\Bundle\BabitchBundle\Form\TournamentType;
+use Cytron\Bundle\BabitchBundle\Controller\PaginatorTrait;
 
 /**
  * Class TournamentController.
@@ -29,7 +30,7 @@ class TournamentController extends FOSRestController implements ClassResourceInt
      *  section="Tournament",
      *   description="Create a tournament",
      *   input={"class"="Cytron\Bundle\BabitchBundle\Form\TournamentType", "name"=""},
-     *   output="Cytron\Bundle\BabitchBundle\Entity\Tournament",
+     *   output="Cytron\Bundle\BabitchBundle\Entity\Tournament\Tournament",
      *   statusCodes={
      *     201="Tournament created",
      *     400="Bad request",
@@ -66,7 +67,7 @@ class TournamentController extends FOSRestController implements ClassResourceInt
      * @ApiDoc(
      *  section="Tournament",
      *   description="Get a tournament's details",
-     *   output="Cytron\Bundle\BabitchBundle\Entity\Tournament",
+     *   output="Cytron\Bundle\BabitchBundle\Entity\Tournament\Tournament",
      *   statusCodes={
      *     200="OK",
      *     400="Bad request",
@@ -102,7 +103,7 @@ class TournamentController extends FOSRestController implements ClassResourceInt
      * @ApiDoc(
      *  section="Tournament",
      *   description="Get tournaments list",
-     *   output="Cytron\Bundle\BabitchBundle\Entity\Tournament",
+     *   output="Cytron\Bundle\BabitchBundle\Entity\Tournament\Tournament",
      *   statusCodes={
      *     200="OK",
      *     400="Bad request"

@@ -1,12 +1,14 @@
 <?php
 
-namespace Cytron\Bundle\BabitchBundle\Entity;
+namespace Cytron\Bundle\BabitchBundle\Entity\Tournament;
 
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 use FSC\HateoasBundle\Annotation as Hateoas;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Cytron\Bundle\BabitchBundle\Entity\AbstractEntity;
+use Cytron\Bundle\BabitchBundle\Entity\Team;
 
 /**
  * Babitch Tournament Entity.
@@ -35,7 +37,7 @@ class Tournament extends AbstractEntity
     protected $name;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Team")
+     * @ORM\ManyToMany(targetEntity="Cytron\Bundle\BabitchBundle\Entity\Team")
      * @ORM\JoinTable(name="tournaments_teams",
      *     joinColumns={@ORM\JoinColumn(name="tournament_id", referencedColumnName="id")},
      *     inverseJoinColumns={@ORM\JoinColumn(name="team_id", referencedColumnName="id")}

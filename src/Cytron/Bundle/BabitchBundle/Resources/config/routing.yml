@@ -11,5 +11,10 @@ CytronBabitchBundle_Team:
     type:     rest
 
 CytronBabitchBundle_Tournament:
-    resource: "@CytronBabitchBundle/Controller/TournamentController.php"
+    resource: "@CytronBabitchBundle/Resources/config/tournament_routes.yml"
     type:     rest
+
+# CytronBabitchBundle_TournamentGroup:
+#     resource: "@CytronBabitchBundle/Controller/TournamentGroupController.php"
+#     parent: CytronBabitchBundle_Tournament
+#     type: rest
