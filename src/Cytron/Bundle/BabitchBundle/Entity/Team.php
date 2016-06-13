@@ -33,6 +33,13 @@ class Team extends AbstractEntity
     protected $name;
 
     /**
+     * @ORM\Column(name="image", type="string")
+     *
+     * @var string
+     */
+    protected $image;
+
+    /**
      * @ORM\OneToOne(targetEntity="Player")
      * @Assert\NotBlank()
      *
@@ -128,6 +135,30 @@ class Team extends AbstractEntity
     public function setName($name)
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Gets the value of image.
+     *
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * Sets the value of image.
+     *
+     * @param string $image the image name
+     *
+     * @return self
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
 
         return $this;
     }

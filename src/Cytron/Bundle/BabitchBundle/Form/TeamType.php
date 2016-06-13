@@ -23,6 +23,7 @@ class TeamType extends AbstractType
     {
         $builder
             ->add('name', TextType::class)
+            ->add('image', TextType::class)
             ->add('player1', EntityType::class, array(
                 // 'placeholder' => 'Select player',
                 'class' => 'CytronBabitchBundle:Player',
