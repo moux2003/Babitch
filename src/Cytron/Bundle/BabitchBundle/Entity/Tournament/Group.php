@@ -53,9 +53,19 @@ class Group extends AbstractEntity
      */
     protected $teams;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Cytron\Bundle\BabitchBundle\Entity\Tournament\Match", cascade={"persist", "remove"})
+     * @ORM\JoinTable(name="tournament_groups_matchs",
+     *     joinColumns={@ORM\JoinColumn(name="group_id", referencedColumnName="id", onDelete="cascade")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="match_id", referencedColumnName="id", onDelete="cascade")}
+     * )
+     */
+    protected $matchs;
+
     public function __construct()
     {
         $this->teams = new ArrayCollection();
+        $this->matchs = new ArrayCollection();
     }
 
     /**
@@ -132,6 +142,41 @@ class Group extends AbstractEntity
     {
         if ($this->teams->contains($team)) {
             $this->teams->removeElement($team);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Gets matchs.
+     *
+     * @return string
+     */
+    public function getMatchs()
+    {
+        return $this->matchs;
+    }
+
+    public function setMatchs(Collection $matchs)
+    {
+        $this->matchs = $matchs;
+
+        return $this;
+    }
+
+    public function addMatch(Match $match)
+    {
+        if (!$this->matchs->contains($match)) {
+            $this->matchs->add($match);
+        }
+
+        return $this;
+    }
+
+    public function removeMatch(Match $match)
+    {
+        if ($this->matchs->contains($match)) {
+            $this->matchs->removeElement($match);
         }
 
         return $this;
